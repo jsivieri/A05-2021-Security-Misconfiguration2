@@ -1,8 +1,7 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // 👈 importante
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -36,5 +35,5 @@ app.post('/login', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
