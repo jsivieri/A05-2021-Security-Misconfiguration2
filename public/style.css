@@ -1,0 +1,145 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #ecf0f1;
+  background: linear-gradient(to right, #203a43, #2c5364);
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  backdrop-filter: blur(2px);
+}
+
+.container {
+  max-width: 500px;
+  margin: 6% auto;
+  background: rgba(20, 24, 31, 0.85);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  animation: fadeIn 1s ease-in-out;
+  backdrop-filter: blur(6px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  text-align: center;
+  color: #00ffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #ecf0f1;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #00ffff;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #00b894;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #00a383;
+  transform: scale(1.02);
+}
+
+.message-box {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  backdrop-filter: blur(3px);
+}
+
+.message-box.success {
+  background-color: #145a32cc;
+  color: #abebc6;
+  border: 2px solid #27ae60;
+  box-shadow: 0 0 5px #2ecc71aa;
+}
+
+.message-box.error {
+  background-color: #641e16cc;
+  color: #f5b7b1;
+  border: 2px solid #c0392b;
+  box-shadow: 0 0 5px #e74c3c99;
+}
+
+.result-box {
+  margin-top: 2rem;
+  background: #273746cc;
+  padding: 1rem;
+  border-left: 4px solid #00ffff;
+  border-radius: 8px;
+  color: #f8f9f9;
+  font-size: 0.95rem;
+  backdrop-filter: blur(4px);
+}
+
+nav.menu {
+  background: #1b2631dd;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #00ffff44;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.menu a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.menu a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff88;
+}

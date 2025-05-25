@@ -1,0 +1,12 @@
+{
+  "name": "backend-json-demo",
+  "version": "1.0.0",
+  "description": "Projeto com backend simples salvando usuários em JSON",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
