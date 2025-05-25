@@ -1,38 +1,53 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const user = document.getElementById('loginUser').value;
-  const pass = document.getElementById('loginPass').value;
-  const dados = JSON.parse(localStorage.getItem('usuarios')) || {};
+  const usuario = document.getElementById('loginUser').value;
+  const senha = document.getElementById('loginPass').value;
 
-  if (dados[user] && dados[user].senha === pass) {
-    document.getElementById('mensagem').textContent = 'Login bem-sucedido!';
-    document.getElementById('mensagem').className = 'message-box success';
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ usuario, senha })
+  });
 
-    const resultado = document.getElementById('resultado');
-    if (dados[user].perfil === 'admin') {
-      resultado.innerHTML = '<h3>Área do Administrador</h3><ul>' +
-        Object.entries(dados).map(([u, info]) => `<li>${u} / ${info.senha}</li>`).join('') +
-        '</ul>';
+  const data = await response.json();
+  const msgBox = document.getElementById('mensagem');
+  const result = document.getElementById('resultado');
+
+  if (response.ok) {
+    msgBox.textContent = 'Login bem-sucedido!';
+    msgBox.className = 'message-box success';
+
+    if (data.mensagem === 'admin') {
+      let lista = '<h3>Área do Administrador</h3><ul>';
+      for (let user in data.dados) {
+        lista += `<li>${user} / ${data.dados[user].senha}</li>`;
+      }
+      lista += '</ul>';
+      result.innerHTML = lista;
     } else {
-      resultado.innerHTML = `<p>Bem-vindo, ${user}. Seu perfil é <strong>usuário comum</strong>.</p>`;
+      result.innerHTML = `<p>Bem-vindo, ${data.nome}. Seu perfil é <strong>usuário comum</strong>.</p>`;
     }
   } else {
-    document.getElementById('mensagem').textContent = 'Usuário ou senha inválidos.';
-    document.getElementById('mensagem').className = 'message-box error';
-    document.getElementById('resultado').innerHTML = '';
+    msgBox.textContent = data.mensagem;
+    msgBox.className = 'message-box error';
+    result.innerHTML = '';
   }
 });
 
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const newUser = document.getElementById('regUser').value;
-  const newPass = document.getElementById('regPass').value;
+  const usuario = document.getElementById('regUser').value;
+  const senha = document.getElementById('regPass').value;
   const perfil = document.getElementById('perfil').value;
-  const dados = JSON.parse(localStorage.getItem('usuarios')) || {};
 
-  dados[newUser] = { senha: newPass, perfil: perfil };
-  localStorage.setItem('usuarios', JSON.stringify(dados));
+  const response = await fetch('/cadastrar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ usuario, senha, perfil })
+  });
 
-  document.getElementById('mensagem').textContent = 'Usuário cadastrado com sucesso.';
-  document.getElementById('mensagem').className = 'message-box success';
+  const data = await response.json();
+  const msgBox = document.getElementById('mensagem');
+  msgBox.textContent = data.mensagem;
+  msgBox.className = 'message-box success';
 });
